@@ -1,0 +1,28 @@
+﻿
+@{
+    Layout = null;
+}
+@using WebApplication1.ViewModels
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>简单计算评价分数</title>
+</head>
+<body>
+    <form method="post" action="/AverageScore/GetAvgScore">
+        计算我的平均成绩<br />
+        科目总分：<input type="text" name="sumScore" />
+        科目总数：<input type="text" name="sumSubject" /><br />
+        <input type="submit" value="开始计算" /><br />
+    </form>
+    @{
+        string myCal = (string)ViewData["avgScore"];
+
+    }
+    @myCal
+    
+    
+</body>
+</html>

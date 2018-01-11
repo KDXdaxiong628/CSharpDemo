@@ -1,0 +1,85 @@
+﻿@model WebApplication1.Models.UserDetails
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+
+<html>
+
+
+<head>
+
+
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+    <title>Login</title>
+
+
+</head>
+
+
+<body>
+
+    <div>
+        @Html.ValidationMessage("CredentialError", new { style = "color:red;" })
+        @using (Html.BeginForm("DoLogin", "Authentication", FormMethod.Post))
+
+        {
+
+
+
+
+            @Html.LabelFor(c => c.UserName)
+            @Html.TextBoxFor(x => x.UserName)
+            @Html.ValidationMessageFor(x => x.UserName)
+
+            @*
+                在上述代码中可以看出，使用HtmlHelper类在View中替代了纯HTML代码。
+
+                View中可使用”Html”调用HtmlHelper类
+                HtmlHelper类函数返回html字符串
+                示例1：
+
+                1:  @Html.TextBoxFor(x => x.UserName)
+                转换为HTML代码
+                <input id="UserName" name="UserName" type="text" value="" />
+
+                示例2：
+
+                 1:  @using (Html.BeginForm("DoLogin", "Authentication", FormMethod.Post))
+                 2:  {
+                 3:  }
+                 转换为HTML代码：
+
+                 1:  <form action="/Authentication/DoLogin" method="post">
+                 2:  </form>
+
+
+            *@
+
+            <br />
+
+            @Html.LabelFor(c => c.Password)
+            @Html.PasswordFor(x => x.Password)
+
+            <br />
+
+
+            <input type="submit" name="BtnSubmit" value="Login" />
+
+        }
+
+
+    </div>
+
+
+</body>
+
+
+</html>

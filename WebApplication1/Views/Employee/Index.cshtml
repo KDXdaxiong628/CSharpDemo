@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+@*@model WebApplication1.Models.Employee*@
+@using WebApplication1.ViewModels
+@*@model EmployeeViewModel*@
+@model EmployeeListViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    
+        <title>MyView</title>
+</head>
+<body>
+
+    <div style="text-align:center"> 
+        Hello, @Model.UserName 
+        <a href="/Authentication/Logout">Logout</a>
+    </div>
+    <hr />
+    <p>Welcome to MVC learning</p>
+
+    <a href="/Employee/AddNew">Add New</a>
+    
+    <div>
+        @{
+            /*
+                ViewData
+             */
+            // WebApplication1.Models.Employee emp = (WebApplication1.Models.Employee)ViewData["Employee"];
+            /*
+                ViewBag
+             */
+            WebApplication1.Models.Employee emp = (WebApplication1.Models.Employee)ViewBag.Employee;
+        }
+
+        @*<b>Employee Details</b><br />
+        Employee Name : @emp.FirstName@emp.LastName <br />
+        Employee FirstName : @{
+            Response.Write(emp.LastName);
+        } <br />
+        Employee Salary: @emp.Salary.ToString("C")
+
+
+        <hr />
+
+
+        Employee Name : @Model.FirstName@Model.LastName <br />
+        @if (Model.Salary > 1500)
+        {
+            <span style="background-color:red">
+                Employee Salary: @Model.Salary.ToString("C")
+            </span>
+        }
+        else
+        {
+            <span style="background-color:green">
+                Employee Salary: @Model.Salary.ToString("C")
+            </span>
+        }*@
+
+        @*添加viewmodel的mvc*@
+
+        @*Hello @Model.UserName<hr />*@
+        @*<b>Employee Details</b><br />
+        Employee Name : @Model.EmployeeName <br />
+        <span style="background-color:@Model.SalaryColor">
+            Employee Salary: @Model.Salary
+        </span>*@
+
+        @*含有集合的view*@
+        <div>
+            <table border="1">
+                <tr>
+                    <th>Employee Name</th>
+                    <th>Salary</th>
+                </tr>
+                @foreach (EmployeeViewModel item in Model.Employees)
+                {
+                    <tr>
+                        <td>@item.EmployeeName</td>
+                        <td style="background-color:@item.SalaryColor">@item.Salary</td>
+                    </tr>
+                }
+            </table>
+        </div>
+
+    </div>
+</body>
+</html>
+
